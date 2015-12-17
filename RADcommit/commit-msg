@@ -18,7 +18,7 @@
 
 # This example catches duplicate Signed-off-by lines.
 
-head -n 1 "$1" | grep -q "^RAD-" || {
+head -n 1 "$1" | grep -Eq "(^RAD-)|(#noissue)" || {
 	echo >&2 Missing Ticket number reference in commit message: $(head -n 1 "$1")
 	exit 1
 }
