@@ -1,0 +1,12 @@
+#!/bin/bash 
+
+if hash gsed 2>/dev/null
+then
+   SED=gsed
+else
+   SED=sed
+fi
+
+ticket=$(git rev-parse --abbrev-ref HEAD | cut -d/ -f2 | cut -d- -f1,2)
+$SED -i "1s/^/$ticket: \n/" "$1"
+
